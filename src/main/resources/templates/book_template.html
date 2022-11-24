@@ -1,0 +1,26 @@
+<html>
+<body>
+	<div style="width: 100%; height: 100%; display: flex; position: relative;">
+		<div style="position: absolute;  top: 33%;  left: 33%; width:30%; padding: 25px; border: 1px solid black;">
+			<ul>
+				{{#book}}
+					<h2>{{title}}</h2>
+					<p>Author: {{author}}</p>
+					<p>Publisher: {{editorial}}</p>
+					<p>Synopsis: {{synopsis}}</p>
+					<p>Publish Year: {{publishYear}}</p>
+					<br>
+					{{#reviews}}
+						<ul style="list-style-type:none; width: 50%;  padding: 10px; border: 1px solid black;">
+							<li>User: {{username}}</li>
+							<li>{{rate}}/5</li>
+							<li>{{comment}}</li>
+						</ul>
+						<br>
+					{{/reviews}}
+				{{/book}}
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
