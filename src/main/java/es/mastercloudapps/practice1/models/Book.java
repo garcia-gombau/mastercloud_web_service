@@ -1,23 +1,24 @@
 package es.mastercloudapps.practice1.models;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 public class Book {
-	
 	private Long id;
 	private String title;
 	private String synopsis;
 	private String author;
-	private String editorial;
+	private String publisher;
 	private String publishYear;
-	private List<Review> reviews;
+	private ConcurrentMap<Long, Review> reviews;
 	
-	public Book(Long id, String title, String synopsis, String author, String editorial, String publishYear, List<Review> reviews) {
+	public Book(Long id, String title, String synopsis, String author, String publisher, String publishYear, ConcurrentMap<Long, Review> reviews) {
 		this.id = id; 
 		this.title = title;
 		this.synopsis = synopsis;
 		this.author = author;
-		this.editorial = editorial;
+		this.publisher = publisher;
 		this.publishYear = publishYear;
 		this.reviews = reviews;
 	}
@@ -54,12 +55,12 @@ public class Book {
 		this.author = author;
 	}
 	
-	public String getEditorial() {
-		return editorial;
+	public String getPublisher() {
+		return publisher;
 	}
 	
-	public void setEditorial(String editorial) {
-		this.editorial = editorial;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 	
 	public String getPublishYear() {
@@ -70,11 +71,15 @@ public class Book {
 		this.publishYear = publishYear;
 	}
 	
-	public List<Review> getReviews() {
+	public ConcurrentMap<Long, Review> getReviews() {
 		return reviews;
 	}
+
+	public Collection<Review> getReviewsValues() {
+		return reviews.values();
+	}
 	
-	public void setReviews(List<Review> reviews) {
+	public void setReviews(ConcurrentMap<Long, Review> reviews) {
 		this.reviews = reviews;
 	}
 

@@ -3,6 +3,9 @@ package es.mastercloudapps.practice1.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 public enum MockReviews {
 	REVIEW0("random_", "Awful.", 0),
@@ -22,11 +25,12 @@ public enum MockReviews {
 		this.rate = rate;
 	}
 	
-	public static List<Review> getMockReviews(){
-		List<Review> reviews = new ArrayList<>();
+	public static ConcurrentMap<Long, Review> getMockReviews(AtomicLong nextId){
+		ConcurrentMap<Long, Review> reviews = new ConcurrentHashMap<>();
 		for (int i = 0; i < 2;i++) {
 			MockReviews mock = MockReviews.getMockReview(new Random().nextInt(0, 5));
-			reviews.add(new Review(i, mock.username+(new Random().nextInt(1960, 2017)), mock.comment, mock.rate));
+			Long id = nextId.getAndIncrement();
+			reviews.put(id, new Review(id, mock.username+(new Random().nextInt(1960, 2017)), mock.comment, mock.rate));
 		}
 		return reviews;
 	}

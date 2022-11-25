@@ -1,26 +1,42 @@
 <html>
 <body>
 	<div style="width: 100%; height: 100%; display: flex; position: relative;">
-		<div style="position: absolute;  top: 33%;  left: 33%; width:30%; padding: 25px; border: 1px solid black;">
+		<div style="position: absolute;  top: 15%;  left: 33%; width:30%; padding: 25px; border: 1px solid black;">
 			<ul>
 				{{#book}}
 					<h2>{{title}}</h2>
 					<p>Author: {{author}}</p>
-					<p>Publisher: {{editorial}}</p>
+					<p>Publisher: {{publisher}}</p>
 					<p>Synopsis: {{synopsis}}</p>
 					<p>Publish Year: {{publishYear}}</p>
 					<br>
-					{{#reviews}}
-						<ul style="list-style-type:none; width: 50%;  padding: 10px; border: 1px solid black;">
+					{{#review}}
+						<ul style="position: relative; list-style-type:none; width: 50%; padding: 10px; border: 1px solid black;">
+							<a href="/book/{{book.id}}/review/{{id}}" style="position: absolute;  top: 10%;  right: 10%; text-decoration:none;" >&#10060;</a>
 							<li>User: {{username}}</li>
 							<li>{{rate}}/5</li>
 							<li>{{comment}}</li>
 						</ul>
 						<br>
-					{{/reviews}}
+					{{/review}}
+				<form style="border: black solid 1px; padding: 10px; width: 80%" action="/book/{{id}}/review" method="post">
+					<label>Username: </label>
+					<br>
+					<input style="margin-top: 5px;" type="text" id="username" name="username" value="{{username}}">
+					<br>
+					<label>Comment: </label>
+					<br>
+					<textarea style="width: 90%; height: 100px;margin-top: 5px; overflow: auto" id="comment" name="comment"></textarea>
+					<br>
+					<label>Rate: </label>
+					<input style="margin-top: 5px;" type="number" id="rate" name="rate" value="0" min="0" max="5" >
+					<br>
+					<button style="margin-top: 10px;" type="submit">Post Review</button>
+				</form>
 				{{/book}}
 			</ul>
 		</div>
+		<a href="/" style="position: absolute;  top: 5%;  left: 25%; text-decoration:none;">&#127968; Inicio</a>
 	</div>
 </body>
 </html>

@@ -2,12 +2,12 @@ package es.mastercloudapps.practice1.models;
 
 public class Review {
 	
-	private int id;
+	private Long id;
 	private String username;
 	private String comment;
 	private int rate;
 	
-	public Review(int id, String username, String comment, int rate) {
+	public Review(Long id, String username, String comment, int rate) {
 		this.id = id;
 		this.username = username;
 		this.comment = comment;
@@ -15,11 +15,11 @@ public class Review {
 	}
 	
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
